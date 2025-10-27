@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { AppShell, Burger, Center, Image, NavLink, Stack } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -18,6 +18,8 @@ import {
   IconDashboardFilled,
   IconPacman,
 } from "@tabler/icons-react";
+
+import { Route as ClaimsRoute } from "./$dealer/claims";
 
 export const Route = createFileRoute("/$dealer")({
   component: RouteComponent,
@@ -43,16 +45,22 @@ function RouteComponent() {
             </Center>
 
             <div>
-              <NavLink
-                href="#required-for-focus"
-                label="Home"
-                leftSection={<IconHome2 size={16} stroke={1.5} />}
-              />
-              <NavLink
-                href="#required-for-focus"
-                label="Claims"
-                leftSection={<IconClipboardData size={16} stroke={1.5} />}
-              />
+              <Link
+                to={ClaimsRoute.to}
+                // Optional: Add params or search if your route needs them
+                params={{ dealer: "nexen" }}
+                // search={{...}}
+                style={{ textDecoration: "none" }} // Prevents default <a> tag underline
+              >
+                {({ isActive }) => (
+                  <NavLink
+                    label="Claims"
+                    leftSection={<IconClipboardData size={16} stroke={1.5} />}
+                    active={isActive} // <-- Pass the router's active state to Mantine
+                    component="div" // <-- Render NavLink as a div to avoid nested <a> tags
+                  />
+                )}
+              </Link>
               <NavLink
                 href="#required-for-focus"
                 label="Guides"

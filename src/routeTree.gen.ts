@@ -12,7 +12,21 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as DealerRouteImport } from './routes/$dealer'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DealerReportsRouteImport } from './routes/$dealer/reports'
+import { Route as DealerProgramInfoRouteImport } from './routes/$dealer/program-info'
+import { Route as DealerProfileRouteImport } from './routes/$dealer/profile'
+import { Route as DealerNexenaceRouteImport } from './routes/$dealer/nexenace'
+import { Route as DealerHomeRouteImport } from './routes/$dealer/home'
+import { Route as DealerGuidesRouteImport } from './routes/$dealer/guides'
 import { Route as DealerDashboardRouteImport } from './routes/$dealer/dashboard'
+import { Route as DealerContactUsRouteImport } from './routes/$dealer/contact-us'
+import { Route as DealerClaimsRouteImport } from './routes/$dealer/claims'
+import { Route as DealerToolsWhatIfCalculatorRouteImport } from './routes/$dealer/tools/what-if-calculator'
+import { Route as DealerToolsViewPayoutsRouteImport } from './routes/$dealer/tools/view-payouts'
+import { Route as DealerToolsSpliffDashboardRouteImport } from './routes/$dealer/tools/spliff-dashboard'
+import { Route as DealerToolsSpliffClaimReviewRouteImport } from './routes/$dealer/tools/spliff-claim-review'
+import { Route as DealerToolsEnrollementDashboardRouteImport } from './routes/$dealer/tools/enrollement-dashboard'
+import { Route as DealerToolsChangeRequestRouteImport } from './routes/$dealer/tools/change-request'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -29,37 +43,209 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DealerReportsRoute = DealerReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerProgramInfoRoute = DealerProgramInfoRouteImport.update({
+  id: '/program-info',
+  path: '/program-info',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerProfileRoute = DealerProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerNexenaceRoute = DealerNexenaceRouteImport.update({
+  id: '/nexenace',
+  path: '/nexenace',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerHomeRoute = DealerHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerGuidesRoute = DealerGuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
+  getParentRoute: () => DealerRoute,
+} as any)
 const DealerDashboardRoute = DealerDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => DealerRoute,
 } as any)
+const DealerContactUsRoute = DealerContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerClaimsRoute = DealerClaimsRouteImport.update({
+  id: '/claims',
+  path: '/claims',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerToolsWhatIfCalculatorRoute =
+  DealerToolsWhatIfCalculatorRouteImport.update({
+    id: '/tools/what-if-calculator',
+    path: '/tools/what-if-calculator',
+    getParentRoute: () => DealerRoute,
+  } as any)
+const DealerToolsViewPayoutsRoute = DealerToolsViewPayoutsRouteImport.update({
+  id: '/tools/view-payouts',
+  path: '/tools/view-payouts',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerToolsSpliffDashboardRoute =
+  DealerToolsSpliffDashboardRouteImport.update({
+    id: '/tools/spliff-dashboard',
+    path: '/tools/spliff-dashboard',
+    getParentRoute: () => DealerRoute,
+  } as any)
+const DealerToolsSpliffClaimReviewRoute =
+  DealerToolsSpliffClaimReviewRouteImport.update({
+    id: '/tools/spliff-claim-review',
+    path: '/tools/spliff-claim-review',
+    getParentRoute: () => DealerRoute,
+  } as any)
+const DealerToolsEnrollementDashboardRoute =
+  DealerToolsEnrollementDashboardRouteImport.update({
+    id: '/tools/enrollement-dashboard',
+    path: '/tools/enrollement-dashboard',
+    getParentRoute: () => DealerRoute,
+  } as any)
+const DealerToolsChangeRequestRoute =
+  DealerToolsChangeRequestRouteImport.update({
+    id: '/tools/change-request',
+    path: '/tools/change-request',
+    getParentRoute: () => DealerRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$dealer': typeof DealerRouteWithChildren
   '/about': typeof AboutRoute
+  '/$dealer/claims': typeof DealerClaimsRoute
+  '/$dealer/contact-us': typeof DealerContactUsRoute
   '/$dealer/dashboard': typeof DealerDashboardRoute
+  '/$dealer/guides': typeof DealerGuidesRoute
+  '/$dealer/home': typeof DealerHomeRoute
+  '/$dealer/nexenace': typeof DealerNexenaceRoute
+  '/$dealer/profile': typeof DealerProfileRoute
+  '/$dealer/program-info': typeof DealerProgramInfoRoute
+  '/$dealer/reports': typeof DealerReportsRoute
+  '/$dealer/tools/change-request': typeof DealerToolsChangeRequestRoute
+  '/$dealer/tools/enrollement-dashboard': typeof DealerToolsEnrollementDashboardRoute
+  '/$dealer/tools/spliff-claim-review': typeof DealerToolsSpliffClaimReviewRoute
+  '/$dealer/tools/spliff-dashboard': typeof DealerToolsSpliffDashboardRoute
+  '/$dealer/tools/view-payouts': typeof DealerToolsViewPayoutsRoute
+  '/$dealer/tools/what-if-calculator': typeof DealerToolsWhatIfCalculatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$dealer': typeof DealerRouteWithChildren
   '/about': typeof AboutRoute
+  '/$dealer/claims': typeof DealerClaimsRoute
+  '/$dealer/contact-us': typeof DealerContactUsRoute
   '/$dealer/dashboard': typeof DealerDashboardRoute
+  '/$dealer/guides': typeof DealerGuidesRoute
+  '/$dealer/home': typeof DealerHomeRoute
+  '/$dealer/nexenace': typeof DealerNexenaceRoute
+  '/$dealer/profile': typeof DealerProfileRoute
+  '/$dealer/program-info': typeof DealerProgramInfoRoute
+  '/$dealer/reports': typeof DealerReportsRoute
+  '/$dealer/tools/change-request': typeof DealerToolsChangeRequestRoute
+  '/$dealer/tools/enrollement-dashboard': typeof DealerToolsEnrollementDashboardRoute
+  '/$dealer/tools/spliff-claim-review': typeof DealerToolsSpliffClaimReviewRoute
+  '/$dealer/tools/spliff-dashboard': typeof DealerToolsSpliffDashboardRoute
+  '/$dealer/tools/view-payouts': typeof DealerToolsViewPayoutsRoute
+  '/$dealer/tools/what-if-calculator': typeof DealerToolsWhatIfCalculatorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$dealer': typeof DealerRouteWithChildren
   '/about': typeof AboutRoute
+  '/$dealer/claims': typeof DealerClaimsRoute
+  '/$dealer/contact-us': typeof DealerContactUsRoute
   '/$dealer/dashboard': typeof DealerDashboardRoute
+  '/$dealer/guides': typeof DealerGuidesRoute
+  '/$dealer/home': typeof DealerHomeRoute
+  '/$dealer/nexenace': typeof DealerNexenaceRoute
+  '/$dealer/profile': typeof DealerProfileRoute
+  '/$dealer/program-info': typeof DealerProgramInfoRoute
+  '/$dealer/reports': typeof DealerReportsRoute
+  '/$dealer/tools/change-request': typeof DealerToolsChangeRequestRoute
+  '/$dealer/tools/enrollement-dashboard': typeof DealerToolsEnrollementDashboardRoute
+  '/$dealer/tools/spliff-claim-review': typeof DealerToolsSpliffClaimReviewRoute
+  '/$dealer/tools/spliff-dashboard': typeof DealerToolsSpliffDashboardRoute
+  '/$dealer/tools/view-payouts': typeof DealerToolsViewPayoutsRoute
+  '/$dealer/tools/what-if-calculator': typeof DealerToolsWhatIfCalculatorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$dealer' | '/about' | '/$dealer/dashboard'
+  fullPaths:
+    | '/'
+    | '/$dealer'
+    | '/about'
+    | '/$dealer/claims'
+    | '/$dealer/contact-us'
+    | '/$dealer/dashboard'
+    | '/$dealer/guides'
+    | '/$dealer/home'
+    | '/$dealer/nexenace'
+    | '/$dealer/profile'
+    | '/$dealer/program-info'
+    | '/$dealer/reports'
+    | '/$dealer/tools/change-request'
+    | '/$dealer/tools/enrollement-dashboard'
+    | '/$dealer/tools/spliff-claim-review'
+    | '/$dealer/tools/spliff-dashboard'
+    | '/$dealer/tools/view-payouts'
+    | '/$dealer/tools/what-if-calculator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$dealer' | '/about' | '/$dealer/dashboard'
-  id: '__root__' | '/' | '/$dealer' | '/about' | '/$dealer/dashboard'
+  to:
+    | '/'
+    | '/$dealer'
+    | '/about'
+    | '/$dealer/claims'
+    | '/$dealer/contact-us'
+    | '/$dealer/dashboard'
+    | '/$dealer/guides'
+    | '/$dealer/home'
+    | '/$dealer/nexenace'
+    | '/$dealer/profile'
+    | '/$dealer/program-info'
+    | '/$dealer/reports'
+    | '/$dealer/tools/change-request'
+    | '/$dealer/tools/enrollement-dashboard'
+    | '/$dealer/tools/spliff-claim-review'
+    | '/$dealer/tools/spliff-dashboard'
+    | '/$dealer/tools/view-payouts'
+    | '/$dealer/tools/what-if-calculator'
+  id:
+    | '__root__'
+    | '/'
+    | '/$dealer'
+    | '/about'
+    | '/$dealer/claims'
+    | '/$dealer/contact-us'
+    | '/$dealer/dashboard'
+    | '/$dealer/guides'
+    | '/$dealer/home'
+    | '/$dealer/nexenace'
+    | '/$dealer/profile'
+    | '/$dealer/program-info'
+    | '/$dealer/reports'
+    | '/$dealer/tools/change-request'
+    | '/$dealer/tools/enrollement-dashboard'
+    | '/$dealer/tools/spliff-claim-review'
+    | '/$dealer/tools/spliff-dashboard'
+    | '/$dealer/tools/view-payouts'
+    | '/$dealer/tools/what-if-calculator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -91,6 +277,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$dealer/reports': {
+      id: '/$dealer/reports'
+      path: '/reports'
+      fullPath: '/$dealer/reports'
+      preLoaderRoute: typeof DealerReportsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/program-info': {
+      id: '/$dealer/program-info'
+      path: '/program-info'
+      fullPath: '/$dealer/program-info'
+      preLoaderRoute: typeof DealerProgramInfoRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/profile': {
+      id: '/$dealer/profile'
+      path: '/profile'
+      fullPath: '/$dealer/profile'
+      preLoaderRoute: typeof DealerProfileRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/nexenace': {
+      id: '/$dealer/nexenace'
+      path: '/nexenace'
+      fullPath: '/$dealer/nexenace'
+      preLoaderRoute: typeof DealerNexenaceRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/home': {
+      id: '/$dealer/home'
+      path: '/home'
+      fullPath: '/$dealer/home'
+      preLoaderRoute: typeof DealerHomeRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/guides': {
+      id: '/$dealer/guides'
+      path: '/guides'
+      fullPath: '/$dealer/guides'
+      preLoaderRoute: typeof DealerGuidesRouteImport
+      parentRoute: typeof DealerRoute
+    }
     '/$dealer/dashboard': {
       id: '/$dealer/dashboard'
       path: '/dashboard'
@@ -98,15 +326,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DealerDashboardRouteImport
       parentRoute: typeof DealerRoute
     }
+    '/$dealer/contact-us': {
+      id: '/$dealer/contact-us'
+      path: '/contact-us'
+      fullPath: '/$dealer/contact-us'
+      preLoaderRoute: typeof DealerContactUsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/claims': {
+      id: '/$dealer/claims'
+      path: '/claims'
+      fullPath: '/$dealer/claims'
+      preLoaderRoute: typeof DealerClaimsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/tools/what-if-calculator': {
+      id: '/$dealer/tools/what-if-calculator'
+      path: '/tools/what-if-calculator'
+      fullPath: '/$dealer/tools/what-if-calculator'
+      preLoaderRoute: typeof DealerToolsWhatIfCalculatorRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/tools/view-payouts': {
+      id: '/$dealer/tools/view-payouts'
+      path: '/tools/view-payouts'
+      fullPath: '/$dealer/tools/view-payouts'
+      preLoaderRoute: typeof DealerToolsViewPayoutsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/tools/spliff-dashboard': {
+      id: '/$dealer/tools/spliff-dashboard'
+      path: '/tools/spliff-dashboard'
+      fullPath: '/$dealer/tools/spliff-dashboard'
+      preLoaderRoute: typeof DealerToolsSpliffDashboardRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/tools/spliff-claim-review': {
+      id: '/$dealer/tools/spliff-claim-review'
+      path: '/tools/spliff-claim-review'
+      fullPath: '/$dealer/tools/spliff-claim-review'
+      preLoaderRoute: typeof DealerToolsSpliffClaimReviewRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/tools/enrollement-dashboard': {
+      id: '/$dealer/tools/enrollement-dashboard'
+      path: '/tools/enrollement-dashboard'
+      fullPath: '/$dealer/tools/enrollement-dashboard'
+      preLoaderRoute: typeof DealerToolsEnrollementDashboardRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/$dealer/tools/change-request': {
+      id: '/$dealer/tools/change-request'
+      path: '/tools/change-request'
+      fullPath: '/$dealer/tools/change-request'
+      preLoaderRoute: typeof DealerToolsChangeRequestRouteImport
+      parentRoute: typeof DealerRoute
+    }
   }
 }
 
 interface DealerRouteChildren {
+  DealerClaimsRoute: typeof DealerClaimsRoute
+  DealerContactUsRoute: typeof DealerContactUsRoute
   DealerDashboardRoute: typeof DealerDashboardRoute
+  DealerGuidesRoute: typeof DealerGuidesRoute
+  DealerHomeRoute: typeof DealerHomeRoute
+  DealerNexenaceRoute: typeof DealerNexenaceRoute
+  DealerProfileRoute: typeof DealerProfileRoute
+  DealerProgramInfoRoute: typeof DealerProgramInfoRoute
+  DealerReportsRoute: typeof DealerReportsRoute
+  DealerToolsChangeRequestRoute: typeof DealerToolsChangeRequestRoute
+  DealerToolsEnrollementDashboardRoute: typeof DealerToolsEnrollementDashboardRoute
+  DealerToolsSpliffClaimReviewRoute: typeof DealerToolsSpliffClaimReviewRoute
+  DealerToolsSpliffDashboardRoute: typeof DealerToolsSpliffDashboardRoute
+  DealerToolsViewPayoutsRoute: typeof DealerToolsViewPayoutsRoute
+  DealerToolsWhatIfCalculatorRoute: typeof DealerToolsWhatIfCalculatorRoute
 }
 
 const DealerRouteChildren: DealerRouteChildren = {
+  DealerClaimsRoute: DealerClaimsRoute,
+  DealerContactUsRoute: DealerContactUsRoute,
   DealerDashboardRoute: DealerDashboardRoute,
+  DealerGuidesRoute: DealerGuidesRoute,
+  DealerHomeRoute: DealerHomeRoute,
+  DealerNexenaceRoute: DealerNexenaceRoute,
+  DealerProfileRoute: DealerProfileRoute,
+  DealerProgramInfoRoute: DealerProgramInfoRoute,
+  DealerReportsRoute: DealerReportsRoute,
+  DealerToolsChangeRequestRoute: DealerToolsChangeRequestRoute,
+  DealerToolsEnrollementDashboardRoute: DealerToolsEnrollementDashboardRoute,
+  DealerToolsSpliffClaimReviewRoute: DealerToolsSpliffClaimReviewRoute,
+  DealerToolsSpliffDashboardRoute: DealerToolsSpliffDashboardRoute,
+  DealerToolsViewPayoutsRoute: DealerToolsViewPayoutsRoute,
+  DealerToolsWhatIfCalculatorRoute: DealerToolsWhatIfCalculatorRoute,
 }
 
 const DealerRouteWithChildren =
