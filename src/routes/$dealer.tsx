@@ -1,5 +1,13 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
-import { AppShell, Burger, Center, Image, NavLink, Stack } from "@mantine/core";
+import {
+  AppShell,
+  Box,
+  Burger,
+  Center,
+  Image,
+  NavLink,
+  Stack,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
 import {
@@ -140,9 +148,7 @@ function RouteComponent() {
               </Link>
               <Link
                 to={ContactRoute.to}
-                // Optional: Add params or search if your route needs them
                 params={{ dealer: "nexen" }}
-                // search={{...}}
                 style={{ textDecoration: "none", color: "inherit" }} // Prevents default <a> tag underline
               >
                 {({ isActive }) => (
@@ -156,9 +162,7 @@ function RouteComponent() {
               </Link>
               <Link
                 to={NexanceRoute.to}
-                // Optional: Add params or search if your route needs them
                 params={{ dealer: "nexen" }}
-                // search={{...}}
                 style={{ textDecoration: "none", color: "inherit" }} // Prevents default <a> tag underline
               >
                 {({ isActive }) => (
@@ -228,9 +232,7 @@ function RouteComponent() {
                 </Link>
                 <Link
                   to={SpliffDashboardRoute.to}
-                  // Optional: Add params or search if your route needs them
                   params={{ dealer: "nexen" }}
-                  // search={{...}}
                   style={{ textDecoration: "none", color: "inherit" }} // Prevents default <a> tag underline
                 >
                   {({ isActive }) => (
@@ -244,9 +246,7 @@ function RouteComponent() {
                 </Link>
                 <Link
                   to={SpliffClaimRoute.to}
-                  // Optional: Add params or search if your route needs them
                   params={{ dealer: "nexen" }}
-                  // search={{...}}
                   style={{ textDecoration: "none", color: "inherit" }} // Prevents default <a> tag underline
                 >
                   {({ isActive }) => (
@@ -261,9 +261,7 @@ function RouteComponent() {
               </NavLink>
               <Link
                 to={ProfileRoute.to}
-                // Optional: Add params or search if your route needs them
                 params={{ dealer: "nexen" }}
-                // search={{...}}
                 style={{ textDecoration: "none", color: "inherit" }} // Prevents default <a> tag underline
               >
                 {({ isActive }) => (

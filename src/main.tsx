@@ -7,7 +7,7 @@ import "@mantine/core/styles.css";
 import { routeTree } from "./routeTree.gen";
 import { MantineProvider } from "@mantine/core";
 
-// import { theme } from "./theme";
+import { theme } from "./theme";
 // Create a new router instance
 const router = createRouter({ routeTree });
 
@@ -24,7 +24,7 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <MantineProvider defaultColorScheme="dark">
+      <MantineProvider theme={theme} defaultColorScheme="dark">
         <RouterProvider router={router} />
       </MantineProvider>
     </StrictMode>,

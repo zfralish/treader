@@ -1,5 +1,13 @@
-import { createTheme } from "@mantine/core";
+import { createTheme, MantineTheme } from "@mantine/core";
 
 export const theme = createTheme({
-  /* Put your mantine theme override here */
+  components: {
+    Paper: {
+      styles: (theme: MantineTheme) => ({
+        root: {
+          backgroundColor: theme.colors.dark[6], // e.g., gray[1]
+        },
+      }),
+    },
+  },
 });
