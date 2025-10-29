@@ -1,6 +1,7 @@
 import {
   Box,
   Divider,
+  Flex,
   Grid,
   Group,
   Paper,
@@ -10,6 +11,12 @@ import {
 } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
 import { ViewingQuarterComboBox } from "../../lib/components/viewingQuaterCombo";
+import { AdministratorTable } from "../../lib/components/administratorTable";
+import { RSDTable } from "../../lib/components/unitsByRSDTable";
+import { RSMTable } from "../../lib/components/rsmTable";
+import { UnitsByDistributorTable } from "../../lib/components/unitsByDistributerTable";
+import { UnitsByStateTable } from "../../lib/components/unitsByStateTable";
+import { UserLoginTable } from "../../lib/components/lastLoginsTable";
 
 export const Route = createFileRoute("/$dealer/dashboard")({
   component: RouteComponent,
@@ -36,9 +43,9 @@ function RouteComponent() {
       </Group>
 
       <Divider my="md" size="md" />
-      <Grid mt={50}>
+      <Grid mt={50} align="stretch" justify="stretch">
         <Grid.Col span={4}>
-          <Paper shadow="xs" p="sm">
+          <Paper shadow="xs" p="sm" h="100%">
             <Stack>
               <Text size="lg" c={theme.primaryColor}>
                 Welcome, "Administrator"
@@ -62,6 +69,58 @@ function RouteComponent() {
                 </Stack>
               </Group>
             </Stack>
+          </Paper>
+        </Grid.Col>
+
+        <Grid.Col span={4}>
+          <Paper h={"100%"} p="sm">
+            <Stack justify="space-around" h="100%">
+              <Text ta="center" size="xl" c={theme.primaryColor}>
+                Units Needed For Next Tier
+              </Text>
+              <Divider />
+              <Flex h="60%" align={"center"} justify={"center"}>
+                <Text
+                  ta="center"
+                  fz={32}
+                  mb={20}
+                  fw={700}
+                  c={theme.colors.green[5]}
+                >
+                  231
+                </Text>
+              </Flex>
+            </Stack>
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <Paper p="sm" h="100%">
+            <UserLoginTable />
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <Paper h={"100%"} p="sm">
+            <AdministratorTable />
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <Paper h={"100%"} p="sm">
+            <RSDTable />
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <Paper h={"100%"} p="sm">
+            <RSMTable />
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <Paper h={"100%"} p="sm">
+            <UnitsByDistributorTable />
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <Paper h={"100%"} p="sm">
+            <UnitsByStateTable />
           </Paper>
         </Grid.Col>
       </Grid>
