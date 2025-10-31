@@ -8,6 +8,11 @@ import { routeTree } from "./routeTree.gen";
 import { MantineProvider } from "@mantine/core";
 
 import { theme } from "./theme";
+
+import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+
+// Register all Community features
+ModuleRegistry.registerModules([AllCommunityModule]);
 // Create a new router instance
 const router = createRouter({ routeTree });
 

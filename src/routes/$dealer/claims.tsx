@@ -11,13 +11,9 @@ import {
 } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
 import { ViewingQuarterComboBox } from "../../lib/components/viewingQuaterCombo";
-import { AdministratorTable } from "../../lib/components/administratorTable";
-import { RSDTable } from "../../lib/components/unitsByRSDTable";
-import { RSMTable } from "../../lib/components/rsmTable";
-import { UnitsByDistributorTable } from "../../lib/components/unitsByDistributerTable";
-import { UnitsByStateTable } from "../../lib/components/unitsByStateTable";
-import { UserLoginTable } from "../../lib/components/lastLoginsTable";
 import { DistributorListTable } from "../../lib/components/distributorListTable";
+import { DealerListTable } from "../../lib/components/dealerListTable";
+import { ClaimListTable } from "../../lib/components/claimsListTable";
 
 export const Route = createFileRoute("/$dealer/claims")({
   component: RouteComponent,
@@ -52,12 +48,12 @@ function RouteComponent() {
         </Grid.Col>
         <Grid.Col span={12}>
           <Paper p="sm">
-            <DistributorListTable />
+            <DealerListTable />
           </Paper>
         </Grid.Col>
         <Grid.Col span={12}>
           <Paper p="sm">
-            <DistributorListTable />
+            <ClaimListTable />
           </Paper>
         </Grid.Col>
       </Grid>
