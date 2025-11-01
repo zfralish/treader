@@ -4,10 +4,20 @@ import { useMemo, useState } from "react";
 import { Distributor, generatedData } from "../data/generator";
 
 import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
-import { ColDef, colorSchemeDark, themeQuartz } from "ag-grid-community"; // 👈 1. ADD THIS IMPORT
+import {
+  ColDef,
+  colorSchemeDark,
+  RowSelectedEvent,
+  RowSelectionOptions,
+  themeQuartz,
+} from "ag-grid-community"; // 👈 1. ADD THIS IMPORT
+import { distributorAtom } from "../atoms/claimsAtoms";
+import { useAtom } from "jotai";
 
 export function DistributorListTable() {
   const theme = useMantineTheme();
+
+  const [distributor, setDistributor] = useAtom(distributorAtom);
 
   const data = useMemo(() => generatedData.distributors, []);
 
@@ -27,6 +37,16 @@ export function DistributorListTable() {
     { field: "tertiary" },
   ]);
 
+  const handleRowSelected = (event: RowSelectedEvent<Distributor>) => {
+    setDistributor(event.data?.id ?? "");
+  };
+
+  const rowSelection = useMemo<
+    RowSelectionOptions | "single" | "multiple"
+  >(() => {
+    return { mode: "singleRow" };
+  }, []);
+
   return (
     <Stack>
       <Group justify="space-between" w={"100%"}>
@@ -39,6 +59,8 @@ export function DistributorListTable() {
           theme={themeQuartz.withPart(colorSchemeDark)}
           rowData={rowData}
           columnDefs={colDefs}
+          rowSelection={rowSelection}
+          onRowSelected={handleRowSelected}
         />
       </Box>
     </Stack>

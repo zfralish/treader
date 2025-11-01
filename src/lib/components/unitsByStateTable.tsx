@@ -1,7 +1,16 @@
-import { Table, useMantineTheme } from "@mantine/core";
+import {
+  Box,
+  Group,
+  Stack,
+  Table,
+  Title,
+  useMantineTheme,
+} from "@mantine/core";
+import { ColDef, colorSchemeDark, themeQuartz } from "ag-grid-community"; // 👈 1. ADD THIS IMPORT
 
 import { faker } from "@faker-js/faker";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { AgGridReact } from "ag-grid-react";
 
 const usStates = [
   "Alabama",
@@ -56,10 +65,15 @@ const usStates = [
   "Wyoming",
 ];
 
+type BaseRecord = {
+  [year: string]: string | number;
+  state: string;
+};
+
 export function UnitsByStateTable() {
   const theme = useMantineTheme();
 
-  const tableData = useMemo(() => {
+  const tableData: BaseRecord[] = useMemo(() => {
     // This log proves it only runs once.
     console.log("Generating fake data for 50 states...");
 
@@ -79,7 +93,7 @@ export function UnitsByStateTable() {
 
       // Push the formatted string row with the 'State' key
       dataRows.push({
-        State: stateName, // Changed from Distributor
+        state: stateName, // Changed from Distributor
         "2024": val2024.toLocaleString("en-US"),
         "2025": val2025.toLocaleString("en-US"),
       });
@@ -87,7 +101,7 @@ export function UnitsByStateTable() {
 
     // Create the "Totals" row, formatting the final numbers
     const totalsRow = {
-      State: "Totals", // Changed from Distributor
+      state: "Totals", // Changed from Distributor
       "2024": total2024.toLocaleString("en-US"),
       "2025": total2025.toLocaleString("en-US"),
     };
@@ -96,36 +110,26 @@ export function UnitsByStateTable() {
     return [...dataRows, totalsRow];
   }, []); //
 
-  const rows = tableData.map((element) => (
-    <Table.Tr key={element["State"]}>
-      <Table.Td>{element["State"]}</Table.Td>
-      <Table.Td>{element["2024"]}</Table.Td>
-      <Table.Td>{element["2025"]}</Table.Td>
-    </Table.Tr>
-  ));
+  const [colDefs, setColDefs] = useState<ColDef<BaseRecord>[]>([
+    { field: "state" },
+    { field: "2024" },
+    { field: "2025" },
+  ]);
 
   return (
-    <Table.ScrollContainer minWidth={250} maxHeight={350}>
-      <Table
-        captionSide="top"
-        highlightOnHover
-        withRowBorders={false}
-        striped={true}
-        stripedColor={theme.colors.dark[5]}
-        stickyHeader
-      >
-        <Table.Caption c={theme.primaryColor} fz={24}>
-          Units By State
-        </Table.Caption>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>RSD</Table.Th>
-            <Table.Th>2024</Table.Th>
-            <Table.Th>2025</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
-    </Table.ScrollContainer>
+    <Stack>
+      <Group justify="space-between" w={"100%"}>
+        <Title order={4} c={theme.primaryColor}>
+          Units By RSD
+        </Title>
+      </Group>
+      <Box style={{ height: 300 }}>
+        <AgGridReact
+          theme={themeQuartz.withPart(colorSchemeDark)}
+          rowData={tableData}
+          columnDefs={colDefs}
+        />
+      </Box>
+    </Stack>
   );
 }

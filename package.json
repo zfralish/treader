@@ -17,6 +17,7 @@
     "@tanstack/react-router-devtools": "^1.133.32",
     "@tanstack/react-table": "^8.21.3",
     "ag-grid-react": "^34.3.1",
+    "jotai": "^2.15.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

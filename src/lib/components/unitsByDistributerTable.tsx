@@ -1,12 +1,36 @@
-import { Table, useMantineTheme } from "@mantine/core";
+import {
+  Box,
+  Group,
+  Stack,
+  Table,
+  Title,
+  useMantineTheme,
+} from "@mantine/core";
+import {
+  ColDef,
+  colorSchemeDark,
+  RowSelectionOptions,
+  themeQuartz,
+} from "ag-grid-community"; // 👈 1. ADD THIS IMPORT
 
 import { faker } from "@faker-js/faker";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { AgGridReact } from "ag-grid-react";
+
+type BaseRecord = {
+  [year: string]: string | number;
+  rsd: string;
+};
 
 export function UnitsByDistributorTable({ numRows = 24 }) {
   const theme = useMantineTheme();
+  const [colDefs, setColDefs] = useState<ColDef<BaseRecord>[]>([
+    { field: "rsd" },
+    { field: "2024" },
+    { field: "2025" },
+  ]);
 
-  const tableData = useMemo(() => {
+  const tableData: BaseRecord[] = useMemo(() => {
     // This log proves it only runs when dependencies change, not on every re-render.
     console.log("Generating fake data...");
 
@@ -25,7 +49,7 @@ export function UnitsByDistributorTable({ numRows = 24 }) {
 
       // Push the formatted string row
       dataRows.push({
-        Distributor: faker.company.name(),
+        rsd: faker.company.name(),
         "2024": val2024.toLocaleString("en-US"),
         "2025": val2025.toLocaleString("en-US"),
       });
@@ -33,7 +57,7 @@ export function UnitsByDistributorTable({ numRows = 24 }) {
 
     // Create the "Totals" row, formatting the final numbers
     const totalsRow = {
-      Distributor: "Totals",
+      rsd: "Totals",
       "2024": total2024.toLocaleString("en-US"),
       "2025": total2025.toLocaleString("en-US"),
     };
@@ -42,36 +66,20 @@ export function UnitsByDistributorTable({ numRows = 24 }) {
     return [...dataRows, totalsRow];
   }, [numRows]);
 
-  const rows = tableData.map((element) => (
-    <Table.Tr key={element["Distributor"]}>
-      <Table.Td>{element["Distributor"]}</Table.Td>
-      <Table.Td>{element["2024"]}</Table.Td>
-      <Table.Td>{element["2025"]}</Table.Td>
-    </Table.Tr>
-  ));
-
   return (
-    <Table.ScrollContainer minWidth={250} maxHeight={350}>
-      <Table
-        captionSide="top"
-        highlightOnHover
-        withRowBorders={false}
-        striped={true}
-        stripedColor={theme.colors.dark[5]}
-        stickyHeader
-      >
-        <Table.Caption c={theme.primaryColor} fz={24}>
-          Units By Distributor
-        </Table.Caption>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>RSD</Table.Th>
-            <Table.Th>2024</Table.Th>
-            <Table.Th>2025</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
-    </Table.ScrollContainer>
+    <Stack>
+      <Group justify="space-between" w={"100%"}>
+        <Title order={4} c={theme.primaryColor}>
+          Units By RSD
+        </Title>
+      </Group>
+      <Box style={{ height: 300 }}>
+        <AgGridReact
+          theme={themeQuartz.withPart(colorSchemeDark)}
+          rowData={tableData}
+          columnDefs={colDefs}
+        />
+      </Box>
+    </Stack>
   );
 }

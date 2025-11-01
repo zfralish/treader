@@ -1,10 +1,12 @@
 import { Box, Group, Stack, Title, useMantineTheme } from "@mantine/core";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Claim, Distributor, generatedData } from "../data/generator";
 
 import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 import { ColDef, colorSchemeDark, themeQuartz } from "ag-grid-community"; // 👈 1. ADD THIS IMPORT
+import { dealerIdsAtom, dealersAtom } from "../atoms/claimsAtoms";
+import { useAtom } from "jotai";
 
 export function ClaimListTable() {
   const theme = useMantineTheme();
@@ -13,6 +15,18 @@ export function ClaimListTable() {
 
   // 3. USE THE TYPE FOR ROWDATA
   const [rowData, setRowData] = useState<Claim[]>(data);
+  const [dealersIds] = useAtom(dealerIdsAtom);
+
+  useEffect(() => {
+    console.log("is this runing");
+    console.log(dealersIds);
+    setRowData(
+      data.filter((row) => {
+        console.log(row);
+        return dealersIds.includes(row.dealerId);
+      }),
+    );
+  }, [dealersIds]);
 
   // 4. USE THE TYPE FOR COLDEFS (THIS IS THE MAIN FIX)
   const [colDefs, setColDefs] = useState<ColDef<Claim>[]>([
@@ -33,11 +47,9 @@ export function ClaimListTable() {
         </Title>
       </Group>
       <Box style={{ height: 300 }}>
-        {" "}
-        {/* Added theme & height */}
         <AgGridReact
           theme={themeQuartz.withPart(colorSchemeDark)}
-          rowData={rowData}
+          rowData={rowData.length > 0 ? rowData : data}
           columnDefs={colDefs}
         />
       </Box>

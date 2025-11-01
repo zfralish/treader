@@ -98,17 +98,17 @@ function RouteComponent() {
             <UserLoginTable />
           </Paper>
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={4}>
           <Paper h={"100%"} p="sm">
             <AdministratorTable />
           </Paper>
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={4}>
           <Paper h={"100%"} p="sm">
             <RSDTable />
           </Paper>
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={4}>
           <Paper h={"100%"} p="sm">
             <RSMTable />
           </Paper>
